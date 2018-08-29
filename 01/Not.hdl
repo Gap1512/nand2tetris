@@ -1,0 +1,22 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Not.hdl
+
+/**
+ * Not gate:
+ * out = not in
+ */
+
+ //Aluno: Gustavo Alves Pacheco
+ //Matrícula: 11821ECP011
+ //Disciplina: Elementos de Sistemas Computacionais
+
+CHIP Not {
+    IN in;
+    OUT out;
+
+    PARTS:
+    //A porta Not consiste em um operação Nand no qual ambas as entradas são iguais
+    Nand (a = in, b = in, out = out);
+}
