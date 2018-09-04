@@ -1,0 +1,36 @@
+//Inc16.hdl
+//Gustavo Alves Pacheco
+//11821ECP011
+
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/Inc16.hdl
+
+/**
+ * 16-bit incrementer:
+ * out = in + 1 (arithmetic addition)
+ */
+
+CHIP Inc16 {
+    IN in[16];
+    OUT out[16];
+
+    PARTS:
+    HalfAdder(a = in[0], b = true, sum = out[0], carry = cr-ha1);
+    FullAdder(a = in[1], b = false, c = cr-ha1, sum = out[1], carry = cr-fa1);
+    FullAdder(a = in[2], b = false, c = cr-fa1, sum = out[2], carry = cr-fa2);
+    FullAdder(a = in[3], b = false, c = cr-fa2, sum = out[3], carry = cr-fa3);
+    FullAdder(a = in[4], b = false, c = cr-fa3, sum = out[4], carry = cr-fa4);
+    FullAdder(a = in[5], b = false, c = cr-fa4, sum = out[5], carry = cr-fa5);
+    FullAdder(a = in[6], b = false, c = cr-fa5, sum = out[6], carry = cr-fa6);
+    FullAdder(a = in[7], b = false, c = cr-fa6, sum = out[7], carry = cr-fa7);
+    FullAdder(a = in[8], b = false, c = cr-fa7, sum = out[8], carry = cr-fa8);
+    FullAdder(a = in[9], b = false, c = cr-fa8, sum = out[9], carry = cr-fa9);
+    FullAdder(a = in[10], b = false, c = cr-fa9, sum = out[10], carry = cr-fa10);
+    FullAdder(a = in[11], b = false, c = cr-fa10, sum = out[11], carry = cr-fa11);
+    FullAdder(a = in[12], b = false, c = cr-fa11, sum = out[12], carry = cr-fa12);
+    FullAdder(a = in[13], b = false, c = cr-fa12, sum = out[13], carry = cr-fa13);
+    FullAdder(a = in[14], b = false, c = cr-fa13, sum = out[14], carry = cr-fa14);
+    FullAdder(a = in[15], b = false, c = cr-fa14, sum = out[15], carry = cr-fa15);
+}
