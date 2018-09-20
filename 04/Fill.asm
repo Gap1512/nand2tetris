@@ -15,6 +15,30 @@
 // "white" in every pixel;
 // the screen should remain fully clear as long as no key is pressed.
 
+//PseudoCode:
+//LOOP:
+//  i = 0
+//  address = SCREEN
+//  n = 8160
+//  if kbd = 0 if SCREEN = 0 goto LOOP else goto WHITE_SCREEN
+//  if kbd > 0 goto BLACK_SCREEN
+//  goto LOOP
+//
+//WHITE_SCREEN:
+//  if i > n goto LOOP
+//  if SCREEN = 0 goto LOOP
+//  RAM[address] = 0
+//  address = address + 1
+//  i++
+//  goto WHITE_SCREEN
+//
+//BLACK_SCREEN:
+//  if i > n goto LOOP
+//  RAM[address] = -1
+//  address = address + 1
+//  i++
+//  goto BLACK_SCREEN
+
 (LOOP)
   @i
   M=0 //i = 0
