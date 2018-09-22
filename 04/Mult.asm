@@ -58,6 +58,11 @@
   @aux //aux variable for flip
   M=D
 
+  @0
+  D=A
+  @R2 //RAM[2] = 0
+  M=D
+
   @i
   M=1 //i = 1
 
