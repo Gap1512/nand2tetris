@@ -1,0 +1,33 @@
+class Circle {
+
+  field int x, y; // Centro do círculo
+
+  // Constroi um novo circulo
+  constructor Circle new(int Ax, int Ay) {
+    let x = Ax;
+    let y = Ay;
+    return this;
+  }
+
+  // Recicla a memoria alocada para o circulo
+  method void dispose() {
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method void setPos(int Ax, int Ay){
+    let x = Ax;
+    let y = Ay;
+    return;
+  }
+
+  // Desenha o círculo na tela
+  method void draw() {
+    do Screen.setColor(true);
+    do Screen.drawCircle(x, y, 30);
+    do Screen.setColor(false);
+    do Screen.drawCircle(x, y, 27);
+    return;
+  }
+
+}

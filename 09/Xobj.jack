@@ -1,0 +1,35 @@
+class Xobj {
+
+   field int x, y; // Localização do centro do x
+
+   // Constroi um novo X, de acordo com a posição do centro
+   constructor Xobj new(int Ax, int Ay) {
+      let x = Ax;
+      let y = Ay;
+      return this;
+   }
+
+   // Recicla memória referente ao X
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   method void setPos(int Ax, int Ay){
+     let x = Ax;
+     let y = Ay;
+     return;
+   }
+
+   // Desenha o X na tela
+   method void draw() {
+      do Screen.setColor(true);
+      do Screen.drawLine(x-30, y-30, x+30, y+30);
+      do Screen.drawLine(x-30, y+30, x+30, y-30);
+      do Screen.drawLine(x-29, y-30, x+29, y+30);
+      do Screen.drawLine(x-29, y+30, x+29, y-30);
+      do Screen.drawLine(x-31, y-30, x+31, y+30);
+      do Screen.drawLine(x-31, y+30, x+31, y-30);
+      return;
+   }
+}

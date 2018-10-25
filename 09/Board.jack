@@ -1,0 +1,12 @@
+class Board {
+
+  // Desenha o tabuleiro
+  function void draw(){
+    do Screen.setColor(true);
+    do Screen.drawLine(128, 85, 383, 85);
+    do Screen.drawLine(128, 170, 383, 170);
+    do Screen.drawLine(298, 0, 298, 255);
+    do Screen.drawLine(213, 0, 213, 255);
+    return;
+  }
+}

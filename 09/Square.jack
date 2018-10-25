@@ -1,0 +1,106 @@
+class Square {
+
+  field int x, y, position;
+  field Array values;
+  field Xobj playerX;
+  field Circle playerO;
+
+  constructor Square new(int Ax, int Ay, Array Avalues, int Aposition){
+    let x = Ax;
+    let y = Ay;
+    let values = Avalues;
+    let position = Aposition;
+    let playerX = Xobj.new(x, y);
+    let playerO = Circle.new(x, y);
+    do draw();
+    return this;
+  }
+
+  method void dispose(){
+    do playerX.dispose();
+    do playerO.dispose();
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method void attValues(int Avalue, int Aposition){
+    let values[Aposition] = Avalue;
+    return;
+  }
+
+  method int getPos(){
+    return position;
+  }
+
+  method void draw() {
+    do Screen.setColor(true);
+    do Screen.drawRectangle(x - 35, y - 35, x + 35, y + 35);
+    do Screen.setColor(false);
+    do Screen.drawRectangle(x - 33, y - 33, x + 33, y + 33);
+    do Screen.setColor(true);
+    if (values[position] = 1) {
+      do playerX.setPos(x, y);
+      do playerX.draw();
+    }
+    if (values[position] = 2) {
+      do playerO.setPos(x, y);
+      do playerO.draw();
+    }
+    return;
+  }
+
+  method void clear() {
+    do Screen.setColor(false);
+    do Screen.drawRectangle(x - 35, y - 35, x + 35, y + 35);
+    do Screen.setColor(true);
+    if (values[position] = 1) {
+      do playerX.setPos(x, y);
+      do playerX.draw();
+    }
+    if (values[position] = 2) {
+      do playerO.setPos(x, y);
+      do playerO.draw();
+    }
+    return;
+  }
+
+  method void moveRight() {
+    if ((~(position = 2)) & (~(position = 5)) & (~(position = 8))) {
+      do clear();
+      let x = x + 85;
+      let position = position + 1;
+      do draw();
+    }
+    return;
+  }
+
+  method void moveLeft() {
+    if ((~(position = 0)) & (~(position = 3)) & (~(position = 6))) {
+      do clear();
+      let x = x - 85;
+      let position = position - 1;
+      do draw();
+    }
+    return;
+  }
+
+  method void moveUp() {
+    if ((~(position = 0)) & (~(position = 1)) & (~(position = 2))) {
+      do clear();
+      let y = y - 85;
+      let position = position - 3;
+      do draw();
+    }
+    return;
+  }
+
+  method void moveDown() {
+    if ((~(position = 6)) & (~(position = 7)) & (~(position = 8))) {
+      do clear();
+      let y = y + 85;
+      let position = position + 3;
+      do draw();
+    }
+    return;
+  }
+}

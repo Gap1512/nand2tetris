@@ -1,0 +1,118 @@
+class TicTacToeGame {
+  field Square square;
+  field Array values;
+  field int i, player, direction;
+  field boolean exit;
+
+  constructor TicTacToeGame new() {
+    let values = Array.new(9);
+    let player = 2;
+    let direction = 0;
+    let exit = false;
+    let i = 0;
+    while (i < 9) {
+      let values[i] = 0;
+      let i = i + 1;
+    }
+
+    do Board.draw();
+    let square = Square.new(170, 43, values, 0);
+    return this;
+  }
+
+  method void dispose() {
+    do square.dispose();
+    do values.dispose();
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method void testWon() {
+    if  (((values[0] = 1)&(values[1] = 1)&(values[2] = 1))
+        |((values[3] = 1)&(values[4] = 1)&(values[5] = 1))
+        |((values[6] = 1)&(values[7] = 1)&(values[8] = 1))
+        |((values[0] = 1)&(values[3] = 1)&(values[6] = 1))
+        |((values[1] = 1)&(values[4] = 1)&(values[7] = 1))
+        |((values[2] = 1)&(values[5] = 1)&(values[8] = 1))
+        |((values[0] = 1)&(values[4] = 1)&(values[8] = 1))
+        |((values[2] = 1)&(values[4] = 1)&(values[6] = 1))){
+      do Screen.clearScreen();
+      do Sys.wait(100);
+      do Output.printString("Player X Venceu!");
+      let exit = true;
+    }
+    if  (((values[0] = 2)&(values[1] = 2)&(values[2] = 2))
+        |((values[3] = 2)&(values[4] = 2)&(values[5] = 2))
+        |((values[6] = 2)&(values[7] = 2)&(values[8] = 2))
+        |((values[0] = 2)&(values[3] = 2)&(values[6] = 2))
+        |((values[1] = 2)&(values[4] = 2)&(values[7] = 2))
+        |((values[2] = 2)&(values[5] = 2)&(values[8] = 2))
+        |((values[0] = 2)&(values[4] = 2)&(values[8] = 2))
+        |((values[2] = 2)&(values[4] = 2)&(values[6] = 2))){
+      do Screen.clearScreen();
+      do Sys.wait(100);
+      do Output.printString("Player O Venceu!");
+      let exit = true;
+    }
+    if ((~(values[0] = 0))&(~(values[1] = 0))&(~(values[2] = 0))
+       &(~(values[3] = 0))&(~(values[4] = 0))&(~(values[5] = 0))
+       &(~(values[6] = 0))&(~(values[7] = 0))&(~(values[8] = 0))){
+      do Screen.clearScreen();
+      do Sys.wait(100);
+      do Output.printString("Empate!");
+      let exit = true;
+    }
+    return;
+  }
+
+  method void mark() {
+    var int position;
+    let position = square.getPos();
+    if (values[position] = 0) {
+      if (player = 2) {
+        let values[position] = 1;
+        let player = 1;
+        do square.attValues(1, position);
+      }
+      else {
+        let values[position] = 2;
+        let player = 2;
+        do square.attValues(2, position);
+      }
+    }
+    do square.clear();
+    do testWon();
+    return;
+  }
+
+  method void moveSquare(){
+    if (direction = 1) {do square.moveUp();}
+    if (direction = 2) {do square.moveDown();}
+    if (direction = 3) {do square.moveLeft();}
+    if (direction = 4) {do square.moveRight();}
+    do Board.draw();
+    do Sys.wait(80);
+    return;
+  }
+
+  method void run() {
+    var char key;
+
+    while(~exit) {
+
+      while (key = 0) {
+        let key = Keyboard.keyPressed();}
+      if (key = 81) {let exit = true; let key = 0;}
+      if (key = 32) {
+        do mark();
+        let key = 0;
+      }
+      if (key = 131) { let direction = 1; do moveSquare(); let key = 0;}
+      if (key = 133) { let direction = 2; do moveSquare(); let key = 0;}
+      if (key = 130) { let direction = 3; do moveSquare(); let key = 0;}
+      if (key = 132) { let direction = 4; do moveSquare(); let key = 0;}
+      do Sys.wait(80);
+    }
+    return;
+  }
+}
