@@ -1,0 +1,29 @@
+class Graphics {
+
+  function void show(Array numbers, int len) {
+    var int i, size, pos;
+    let size = (512 / len);
+    let i = 0;
+    let pos = 0;
+    do Screen.clearScreen();
+    while (i < len) {
+
+      if (len < 512) {
+        let pos = pos + size;
+        if (pos < 512) {
+          do Screen.drawRectangle(pos - size, 255 - numbers[i], pos, 255);
+        }
+        if (pos = 512) {
+          do Screen.drawRectangle(pos - size, 255 - numbers[i], pos - 1, 255);
+        }
+      }
+      else{
+        do Screen.drawLine(i, 255, i, 255 - numbers[i]);
+        //do Screen.drawPixel(i, 255 - numbers[i]);
+      }
+
+      let i = i + 1;
+    }
+    return;
+  }
+}

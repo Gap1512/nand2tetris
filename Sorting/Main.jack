@@ -1,0 +1,54 @@
+class Main {
+
+  function void main() {
+    var Array numbers;
+    let numbers = Array.new(512);
+    do Random.set();
+    do Random.initialize(numbers, 512);
+
+    do Main.algorithmName("Fisher Yates - 512 Elements");
+    do Random.graphicFisherYates(numbers, 512);
+    do Sys.wait(1500);
+
+    do Main.algorithmName("Quick Sort - 512 Elements");
+    do Random.fisherYates(numbers, 512);
+    do Sort.quickSort(numbers, 512);
+    do Sys.wait(1500);
+
+    do Main.algorithmName("Selection Sort - 256 Elements");
+    do Random.fisherYates(numbers, 256);
+    do Sort.selectionSort(numbers, 256);
+    do Sys.wait(1500);
+
+    do Main.algorithmName("Insertion Sort - 64 Elements");
+    do Random.fisherYates(numbers, 64);
+    do Sort.insertionSort(numbers, 64);
+    do Sys.wait(1500);
+
+    do Main.algorithmName("Bubble Sort - 32 Elements");
+    do Random.fisherYates(numbers, 32);
+    do Sort.bubbleSort(numbers, 32);
+    do Sys.wait(1500);
+
+    do Main.algorithmName("Gnome Sort - 32 Elements");
+    do Random.fisherYates(numbers, 32);
+    do Sort.gnomeSort(numbers, 32);
+    do Sys.wait(1500);
+
+    do Main.algorithmName("Bogo Sort - 7 Elements");
+    do Random.fisherYates(numbers, 7);
+    do Sort.bogoSort(numbers, 7);
+    do Sys.wait(1500);
+
+    do numbers.dispose();
+    return;
+  }
+
+  function void algorithmName(String s){
+    do Screen.clearScreen();
+    do Output.moveCursor(0, 0);
+    do Output.printString(s);
+    do Sys.wait(3000);
+    return;
+  }
+}

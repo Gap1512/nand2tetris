@@ -1,0 +1,157 @@
+class Sort {
+  static int len;
+  static Array b;
+
+  function void swap(Array numbers, int i, int j) {
+    var int i, j, tmp;
+    let tmp = numbers[j];
+    let numbers[j] = numbers[i];
+    let numbers[i] = tmp;
+    return;
+  }
+
+  function void quickSort(Array numbers, int length) {
+    let len = length;
+    do Sort.quickSortAux(numbers, 0, len - 1);
+    return;
+  }
+
+  function void quickSortAux(Array numbers, int first, int last) {
+    var int i, j, pivot;
+
+    do Graphics.show(numbers, len); // Remove This Line For Non-Graphical
+    do Sys.wait(35); // Remove This Line For Non-Graphical
+
+    if(first < last) {
+      let pivot = first;
+      let i = first;
+      let j = last;
+      while(i < j) {
+        while(((numbers[i] < numbers[pivot]) | (numbers[i] = numbers[pivot])) & (i < last)) {
+          let i = i + 1;
+        }
+        while(numbers[j] > numbers[pivot]) {
+          let j = j - 1;
+        }
+        if(i < j) {
+          do Sort.swap(numbers, i, j);
+        }
+      }
+      do Sort.swap(numbers, pivot, j);
+      do Sort.quickSortAux(numbers, first, j - 1);
+      do Sort.quickSortAux(numbers, j + 1, last);
+    }
+
+    return;
+  }
+
+  function void bubbleSort(Array numbers, int length) {
+    var int k, j;
+    let k = length - 1;
+
+    while(k > 0) {
+      let j = 0;
+
+      while(j < k) {
+
+        do Graphics.show(numbers, length); // Remove This Line For Non-Graphical
+        do Sys.wait(35); // Remove This Line For Non-Graphical
+
+        if (numbers[j] > numbers[j + 1]) {
+          do Sort.swap(numbers, j, j + 1);
+        }
+        let j = j + 1;
+      }
+
+
+      let k = k - 1;
+    }
+    return;
+  }
+
+  function void insertionSort(Array numbers, int length) {
+    var int i, j, tmp;
+    let i = 0;
+
+    while (i < length) {
+      let j = i;
+      let tmp = numbers[i];
+
+
+      while ((j > 0) & (tmp < numbers[j - 1])) {
+        let numbers[j] = numbers[j - 1];
+        let j = j - 1;
+
+        do Graphics.show(numbers, length); // Remove This Line For Non-Graphical
+        do Sys.wait(35); // Remove This Line For Non-Graphical
+      }
+
+      let numbers[j] = tmp;
+      let i = i + 1;
+    }
+    return;
+  }
+
+  function void selectionSort(Array numbers, int length) {
+    var int i, j, tmp;
+    while (i < length) {
+      let j = i;
+      let tmp = i;
+      while (j < length) {
+        if (numbers[j] < numbers[tmp]) {
+          let tmp = j;
+        }
+        let j = j + 1;
+      }
+      do Sort.swap(numbers, i, tmp);
+
+      do Graphics.show(numbers, length); // Remove This Line For Non-Graphical
+      do Sys.wait(35); // Remove This Line For Non-Graphical
+
+      let i = i + 1;
+    }
+    return;
+  }
+
+  function boolean isSorted(Array numbers, int length) {
+    var int i;
+    let i = length;
+    while (i > 0) {
+      if (numbers[i] < numbers[i - 1]) {
+        return false;
+      }
+      let i = i - 1;
+    }
+    return true;
+  }
+
+  function void bogoSort(Array numbers, int length) {
+    var boolean sort;
+    let sort = Sort.isSorted(numbers, length);
+    while(~sort) {
+      do Random.fisherYates(numbers, length);
+      let sort = Sort.isSorted(numbers, length);
+
+      do Graphics.show(numbers, length); // Remove This Line For Non-Graphical
+      do Sys.wait(35); // Remove This Line For Non-Graphical
+    }
+    return;
+  }
+
+  function void gnomeSort(Array numbers, int length) {
+    var int i;
+    while (i < length) {
+      if ((i = 0) | (numbers[i] > numbers[i - 1]) | (numbers[i] = numbers[i - 1])) {
+        let i = i + 1;
+      }
+      else {
+        do Sort.swap(numbers, i - 1, i);
+        let i = i - 1;
+
+        do Graphics.show(numbers, length); // Remove This Line For Non-Graphical
+        do Sys.wait(35); // Remove This Line For Non-Graphical
+      }
+    }
+    return;
+  }
+}

@@ -1,0 +1,51 @@
+class Random {
+  static int seed, a, c, m;
+
+  function void set() {
+    let seed = 66;
+    let a = 35;
+    let c = 2;
+    let m = 653;
+    return;
+  }
+
+  function void initialize(Array numbers, int len) {
+    var int i;
+    let i = 0;
+    while (i < (len - 1)) {
+      let numbers[i] = i / 2;
+      let i = i + 1;
+    }
+    return;
+  }
+
+  function void graphicFisherYates(Array numbers, int len) {
+    var int i, j;
+    let i = len - 1;
+    while(i > 0) {
+      let j = AuxMath.mod(Random.LCG(), (i + 1));
+      do Sort.swap(numbers, i, j);
+      let i = i - 1;
+
+      do Graphics.show(numbers, len); // Remove This Line For Non-Graphical
+      do Sys.wait(35); // Remove This Line For Non-Graphical
+    }
+    return;
+  }
+
+  function void fisherYates(Array numbers, int len) {
+    var int i, j;
+    let i = len - 1;
+    while(i > 0) {
+      let j = AuxMath.mod(Random.LCG(), (i + 1));
+      do Sort.swap(numbers, i, j);
+      let i = i - 1;
+    }
+    return;
+  }
+
+  function int LCG() {
+    let seed = AuxMath.mod((a * seed + c),  m);
+    return seed;
+  }
+}

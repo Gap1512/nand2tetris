@@ -1,0 +1,118 @@
+function Random.set 0
+push constant 66
+pop static 0
+push constant 35
+pop static 1
+push constant 2
+pop static 2
+push constant 653
+pop static 3
+push constant 0
+return
+function Random.initialize 1
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push argument 1
+push constant 1
+sub
+lt
+not
+if-goto WHILE_END0
+push local 0
+push argument 0
+add
+push local 0
+push constant 2
+call Math.divide 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Random.graphicFisherYates 2
+push argument 1
+push constant 1
+sub
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+gt
+not
+if-goto WHILE_END0
+call Random.LCG 0
+push local 0
+push constant 1
+add
+call AuxMath.mod 2
+pop local 1
+push argument 0
+push local 0
+push local 1
+call Sort.swap 3
+pop temp 0
+push local 0
+push constant 1
+sub
+pop local 0
+push argument 0
+push argument 1
+call Graphics.show 2
+pop temp 0
+push constant 35
+call Sys.wait 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Random.fisherYates 2
+push argument 1
+push constant 1
+sub
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+gt
+not
+if-goto WHILE_END0
+call Random.LCG 0
+push local 0
+push constant 1
+add
+call AuxMath.mod 2
+pop local 1
+push argument 0
+push local 0
+push local 1
+call Sort.swap 3
+pop temp 0
+push local 0
+push constant 1
+sub
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Random.LCG 0
+push static 1
+push static 0
+call Math.multiply 2
+push static 2
+add
+push static 3
+call AuxMath.mod 2
+pop static 0
+push static 0
+return
